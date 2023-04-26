@@ -1,0 +1,45 @@
+{
+  "scenarios": {
+    
+    "SCENARIO1_PUBLIC_CROCS": {
+      "executor": "ramping-vus",
+      "stages": [
+        { "target": 1, "duration": "10s" }
+      ],
+      "gracefulRampDown": "2m",
+      "exec": "Scenario1"
+    },
+
+    "SCENARIO2_REGISTER_LOGIN_LOGOUT": {
+      "executor": "ramping-vus",
+      "stages": [
+        { "target": 1, "duration": "10s" }
+      ],
+      "gracefulRampDown": "2m",
+      "exec": "Scenario2"
+    },
+
+    "SCENARIO3_WSS": {
+      "executor": "ramping-vus",
+      "stages": [
+        { "target": 1, "duration": "10s" }
+      ],
+      "gracefulRampDown": "2m",
+      "exec": "Scenario2"
+    }
+   },
+ 
+   "ext": {
+     "loadimpact": {
+       "projectID": 12341234,
+       "name": "k6 Test Project A - 21 Apr 2023",
+       "distribution": {
+         "distributionLabel1": { "loadZone": "amazon:us:ashburn", "percent": 25 },
+         "distributionLabel2": { "loadZone": "amazon:us:ashburn", "percent": 25 },
+         "distributionLabel3": { "loadZone": "amazon:us:ashburn", "percent": 25 },
+         "distributionLabel4": { "loadZone": "amazon:us:ashburn", "percent": 25 }
+       },
+       "note": "load test"
+     }
+   }
+ }
