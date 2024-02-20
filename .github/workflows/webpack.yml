@@ -12,12 +12,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install k6
+      # - name: Install k6
+      #   run: |
+      #     curl https://github.com/grafana/k6/releases/download/v0.49.0/k6-v0.49.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
+      # - name: Install packages
+      #   run: |
+      #     npm install
+      # - name: Run k6 tests
+      #   run: |
+      #     npm run smoke_test
+      - name: Install packages and build project
         run: |
-          curl https://github.com/grafana/k6/releases/download/v0.49.0/k6-v0.49.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Install packages
-        run: |
-          npm install
-      - name: Run k6 tests
-        run: |
-          npm run smoke_test
+          npm install & npm run build
+      - name: Run k6 cloud test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: ./dist/test.main.js
+          flags: --env CONFIG_FILE=../src/config/smoke_load_config.json
+          cloud: true
+          token: ${{ secrets.K6_CLOUD_API_TOKEN }}
