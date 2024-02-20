@@ -31,7 +31,6 @@
  
    "ext": {
      "loadimpact": {
-       "projectID": 12341234,
        "name": "k6 Test Project A - 21 Apr 2023",
        "distribution": {
          "distributionLabel1": { "loadZone": "amazon:us:ashburn", "percent": 25 },
